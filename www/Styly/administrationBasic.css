@@ -1,0 +1,307 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+nav {
+    background-color: #1b263b;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    position: fixed;
+    justify-content: space-around;
+    z-index: 10000;
+}
+
+nav a span {
+    display: none;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    width: 15%;
+    padding: 5%;
+    text-align: center;
+}
+
+nav a:hover {
+    background-color: #2f394c;
+}
+
+@media (min-width: 568px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+    nav {
+        height: 100vh;
+        width: 15%;
+        flex-direction: column;
+    }
+
+    nav a {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        height: 15vh;
+        padding: 0;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    nav a span {
+        display: block;
+    }
+}
+
+@media (min-width: 1200px) {
+
+}
+
+.main {
+    width: 100%;
+    float: right;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.main-heading {
+    background-color: #0d1b2a;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 0.5%;
+}
+
+@media (min-width: 992px) {
+    .main {
+        width: 85%;
+    }
+}
+
+.table {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: scroll;
+}
+
+table {
+    width: 250%;
+    border-spacing: 0px;
+    padding: 1%;
+    margin-top: 2%;
+}
+
+th {
+    padding: 2%;
+    margin: 0;
+    background-color: #aeaeae;
+}
+
+td {
+    text-align: center;
+    padding: 2%;
+}
+
+.last-td {
+    display: flex;
+    justify-content: space-around;
+    padding: 5%;
+}
+
+.last-td a {
+    color: black;
+}
+
+form {
+    width: 100%;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20%;
+}
+
+input, select {
+    text-align: center;
+    width: 50%;
+    padding: 2%;
+    margin-bottom: 5%;
+    border: none;
+    border-bottom: 1px solid #1b263b;
+}
+
+button {
+    background-color: #0d1b2a;
+    border: none;
+    color: white;
+    padding: 2%;
+    margin-top: 5%;
+}
+
+
+@media (min-width: 992px) {
+    .table {
+        width: 100%;
+        padding: 1%;
+        overflow-x: hidden;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    td, th {
+        padding: 1%;
+    }
+
+    input, select {
+        width: 50%;
+        padding: 1%;
+        margin-bottom: 2%;
+    }
+
+    button {
+        padding: 2%;
+    }
+
+
+    form {
+        padding-bottom: 0;
+    }
+}
+
+.user-table td:nth-of-type(odd) {
+    background-color: #aeaeae;
+}
+
+.user-table {
+    border-spacing: 10px;
+}
+
+.profile-div-actions {
+    display: flex;
+    width: 90%;
+    margin-left: 0%;
+    flex-direction: column;
+    padding-bottom: 20%;
+}
+
+.profile-div {
+    border: 1px solid #aeaeae;
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+.profile-div-heading {
+    background-color: #aeaeae;
+    padding: 0.25%;
+    text-align: center;
+}
+
+.profile-div-body {
+    padding: 2%;
+}
+
+@media (min-width: 992px) {
+    .profile-div {
+        width: 30%;
+        margin-top: 5%;
+        margin-left: 2.5%;
+    }
+
+    .profile-div-actions {
+        flex-direction: unset;
+        width: 100%;
+        margin-left: 0;
+        padding-bottom: 0;
+    }
+}
+
+.images {
+    padding: 1% 1% 15% 1%;
+    display: flex;
+    flex-direction: column;
+}
+
+.images-img {
+    margin-bottom: 5%;
+    padding: 1%;
+    background-color: #e8e8e8;
+    text-align: center;
+}
+
+.images-img img{
+    width: 100%;
+}
+
+.images-img a {
+    color: black;
+    text-decoration: none;
+    margin-top: 5%;
+}
+
+.images-img a span {
+    margin-left: 2%;
+}
+
+@media (min-width: 992px) {
+    .images {
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding-bottom: 0;
+    }
+
+    .images-img {
+        width: 400px;
+        margin: 2%;
+    }
+}
+
+.add {
+    color: white;
+    text-decoration: none;
+    background-color: #1b263b;
+    padding: 3%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 0;
+    margin-top: 2%;
+}
+
+@media (min-width: 568px) {
+    .add {
+        width: 25%;
+    }
+}
+
+@media (min-width: 568px) {
+    .add {
+        padding: 2%;
+        width: 15%;
+    }
+}
+
+.tr:nth-of-type(odd) {
+    background-color: #2f394c;
+    color: white;
+}
+
+.tr:nth-of-type(odd) i {
+    color: white;
+}
+
+.note-editor.note-frame {
+    width: 100%;
+    max-width: 100%;
+}

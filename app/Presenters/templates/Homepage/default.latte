@@ -1,0 +1,45 @@
+{block content}
+	<h1 class="home-h1"><span>Nejnovější články</span> <i class="fas fa-newspaper"></i></h1>
+	<div class="articles">
+		{foreach $prispevky as $prispevek}
+			<article class="home-article">
+				<h2>{$prispevek->Nadpis}</h2>
+				<div class="article-info">
+					<div>
+						<i class="fas fa-calendar-alt"></i>
+						<span>{$prispevek->Datum|date:'j. n. Y'}</span>
+					</div>
+					<div>
+						<i class="fas fa-user"></i>
+						<span>{$prispevek->Uzivatele_ID}</span>
+					</div>
+					<div>
+						<i class="fas fa-bookmark"></i>
+						<span>{$prispevek->Kategorie_Prispevky_ID}</span>
+					</div>
+				</div>
+				<p>{$prispevek->Text|noescape|substr:255}</p>
+			</article>
+		{/foreach}
+	</div>
+	<div class="content-center">
+		<a href="clanky.php">Všechny příspěvky najdeš zde!</a>
+	</div>
+	<h1 class="home-h1"><span>Sociální sítě</span> <i class="fas fa-hashtag"></i></h1>
+	<div class="socials">
+		<div class="social fb">
+			<a href="https://www.facebook.com/sbordobrovolnychhasicublato/?view_public_for=101044874744173" target="_blank"><i class="fab fa-facebook-f fa-3x"></i></a>
+		</div>
+		<div class="social ig">
+			<a href="https://www.instagram.com/sdh.blato/?hl=cs" target="_blank"><i class="fab fa-instagram fa-3x"></i></a>
+		</div>
+	</div>
+	<div class="h1-right">
+		<h1 class="home-h1"><span>Partneři</span> <i class="fas fa-handshake"></i></h1>
+	</div>
+	<div class="partners">
+		<img src="Fotografie\Znaky\logo_HS_colour_PSD.jpg" alt="">
+		<img src="Fotografie\Znaky\logo-barevne-s-textem_PSD.jpg" alt="">
+		<img src="Fotografie\Znaky\Mikulovice_PA_Coa_PSD.jpg" alt="">
+	</div>
+{/block}

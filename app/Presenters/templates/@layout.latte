@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<script src="https://kit.fontawesome.com/5c13d17743.js"></script>
+	<link rel="stylesheet" href="{$basePath}/Styly/basic.css">
+	<title>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</title>
+</head>
+<body>
+	<nav>
+		<a href="#"><i class="fas fa-home"></i><span>Domů</span></a>
+		<a href="#"><i class="fas fa-monument"></i><span>Historie</span></a>
+		<a href="#"><i class="fas fa-calendar-alt"></i><span>Akce</span></a>
+		<a href="#"><i class="fas fa-image"></i><span>Galerie</span></a>
+		<a href="#"><i class="fas fa-address-card"></i><span>Kontakty</span></a>
+		<a href="#"><i class="fas fa-sign-in-alt"></i><span>Přihlášení</span></a>
+		<a href="#"><i class="fas fa-user-plus"></i><span>Registrace</span></a>
+	</nav>
+	<div class="slideshow-container">
+		<div class="mySlides" style="background-image: url({$basePath}/Fotografie/prilohy_24301/DSC05626.JPG)">
+			<div class="slides-info">
+				<h2>Příprava na sezónu</h2>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam iure quis quibusdam, voluptatibus rerum suscipit delectus voluptatum deserunt distinctio ipsa dolor! Id sapiente iusto cumque, ab laudantium nihil libero deserunt!</p>
+			</div>
+		</div>
+
+		<div class="mySlides" style="background-image: url({$basePath}/Fotografie/prilohy_24301/DSC03604.JPG)">
+			<div class="slides-info">
+				<h2>Rok 2019 v kostce</h2>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam iure quis quibusdam, voluptatibus rerum suscipit delectus voluptatum deserunt distinctio ipsa dolor! Id sapiente iusto cumque, ab laudantium nihil libero deserunt!</p>
+			</div>
+		</div>
+
+		<div class="mySlides" style="background-image: url({$basePath}/Fotografie/prilohy_24301/DSC05364.JPG)">
+			<div class="slides-info">
+				<h2>Otevírání studánek</h2>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam iure quis quibusdam, voluptatibus rerum suscipit delectus voluptatum deserunt distinctio ipsa dolor! Id sapiente iusto cumque, ab laudantium nihil libero deserunt!</p>
+			</div>
+		</div>
+	</div>
+	{include content}
+	<footer>
+		<a href="administrationArticles.php">Administrace stránky</a>
+		<img src="Fotografie/Znaky/Maly%20znak.svg-edit.svg">
+		<br>
+		<a href="#">Vytvořil <b>Martin Hanzl</b></a>
+	</footer>
+	<script src="{$basePath}/Javascript/slideshow.js"></script>
+</body>
+</html>
