@@ -1,3 +1,33 @@
 {block content}
-
+    <div class="kategorie">
+    <a href="kategoriePrispevky.php?id=1"><i class="fas fa-trophy"></i><span>Závody</span></a>
+    <a href="kategoriePrispevky.php?id=2"><i class="fas fa-running"></i><span>Nácviky</span></a>
+    <a href="kategoriePrispevky.php?id=3"><i class="fab fa-leanpub"></i><span>Školení</span></a>
+    <a href="kategoriePrispevky.php?id=4"><i class="fas fa-glass-cheers"></i><span>Plesy</span></a>
+    <a href="kategoriePrispevky.php?id=5"><i class="fas fa-trophy"></i><span>Exhibice</span></a>
+    <a href="kategoriePrispevky.php?id=6"><i class="fas fa-info"></i><span>Informace</span></a>
+    </div>
+    <div class="clanky">
+        {foreach $prispevky as $prispevek}
+            <article class="home-article">
+                <h2>{$prispevek->Nadpis}</h2>
+                <div class="article-info">
+                    <div>
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>{$prispevek->Datum|date:'j. n. Y'}</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-user"></i>
+                        <span>{$prispevek->Uzivatele_ID}</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-bookmark"></i>
+                        <span>{$prispevek->Kategorie_Prispevky_ID}</span>
+                    </div>
+                </div>
+                <p>{$prispevek->Text|noescape|truncate:255}</p>
+                <a n:href="Homepage:prispevek $prispevek->prispevkyID"><div class='article-link'><i class='fas fa-chevron-right'></i></div></a>
+            </article>
+        {/foreach}
+    </div>
 {/block}

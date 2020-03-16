@@ -24,4 +24,8 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
         $this->template->prispevky = $this->database->table('prispevky')
             ->order('prispevkyID DESC');
     }
+
+    public function renderPrispevek($id) :void {
+        $this->template->prispevky = $this->database->table('prispevky')->get($id);
+    }
 }

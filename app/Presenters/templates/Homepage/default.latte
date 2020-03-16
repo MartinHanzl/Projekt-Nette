@@ -18,7 +18,8 @@
 						<span>{$prispevek->Kategorie_Prispevky_ID}</span>
 					</div>
 				</div>
-				<p>{$prispevek->Text|noescape|substr:255}</p>
+				<p>{$prispevek->Text|noescape|truncate:255}</p>
+				<a n:href="Homepage:prispevek $prispevek->prispevkyID"><div class='article-link'><i class='fas fa-chevron-right'></i></div></a>
 			</article>
 		{/foreach}
 	</div>
