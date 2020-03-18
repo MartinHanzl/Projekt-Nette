@@ -7,6 +7,8 @@ namespace App\Presenters;
 use Nette;
 use Nette\Application\UI;
 use Nette\Application\UI\Form;
+use Nette\Mail\Message;
+use Nette\Mail\SendmailMailer;
 
 final class HomepagePresenter extends Nette\Application\UI\Presenter
 {
@@ -35,6 +37,12 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
             ->order('akceID DESC');
     }
 
+    public function renderGalerie() :void {
+        $this->template->galerie = $this->database->table('fotogalerie')
+            ->order('Fotogalerie_ID DESC');
+
+    }
+
     protected function createComponentContactForm() :Form {
         $form = new Form;
         $form->addEmail('email')
@@ -43,8 +51,25 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
         $form->addText('predmet')
                 ->setHtmlAttribute('placeholder', 'Předmět emailu')
                 ->setRequired("Zadejte předmět emailu!");
-        $form->addSubmit('login', 'Registrovat');
-        $form->onSuccess[] = [$this, 'registrationFormSucceeded'];
+        $form->addTextArea('text')
+                ->setHtmlAttribute('placeholder', 'Text emailu')
+                ->setRequired("Zadejte text emailové zprávy!");
+        $form->addSubmit('emailSend', 'Odeslat email');
+        $form->onSuccess[] = [$this, 'emailFormSucceeded'];
         return $form;
+    }
+
+    public function emailFormSucceeded(UI\Form $form, \stdClass $values): void {
+        $values = $form->getValues();
+        $email = $values["email"];
+        $predmet = $values["predmet"];
+        $text = $values["text"];
+        $mail = new Message();
+        $mail->setFrom($email)
+                ->addTo("martas.hanzl@email.cz")
+                ->setSubject($predmet)
+                ->setBody($text);
+        $mailer = new SendmailMailer;
+        $mailer->send($mail);
     }
 }

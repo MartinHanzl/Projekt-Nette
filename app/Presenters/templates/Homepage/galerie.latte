@@ -1,0 +1,20 @@
+{block content}
+    {foreach $galerie as $g}
+        <div class="gallery-main">
+            <article class="gallery">
+                <h2>{$g->Nazev}</h2>
+                <div class="gallery-info">
+                    <div>
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>{$g->Pridano|date: "j. n. Y"}</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-user"></i>
+                        <span>{$g->Uzivatele_ID}</span>
+                    </div>
+                </div>
+                <a href='#'><div class='gallery-link'><i class='fas fa-eye fa-2x'></i></div></a>
+            </article>
+        </div>
+    {/foreach}
+{/block}

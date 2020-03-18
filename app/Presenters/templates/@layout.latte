@@ -12,10 +12,15 @@
 		<a n:href="Homepage:default"><i class="fas fa-home"></i><span>Domů</span></a>
 		<a n:href="Homepage:historie"><i class="fas fa-monument"></i><span>Historie</span></a>
 		<a n:href="Homepage:akce"><i class="fas fa-calendar-alt"></i><span>Akce</span></a>
-		<a href="#"><i class="fas fa-image"></i><span>Galerie</span></a>
-		<a href="#"><i class="fas fa-address-card"></i><span>Kontakty</span></a>
-		<a href="#"><i class="fas fa-sign-in-alt"></i><span>Přihlášení</span></a>
-		<a href="#"><i class="fas fa-user-plus"></i><span>Registrace</span></a>
+		<a n:href="Homepage:galerie"><i class="fas fa-image"></i><span>Galerie</span></a>
+		<a n:href="Homepage:kontakty"><i class="fas fa-address-card"></i><span>Kontakty</span></a>
+		{if $user}
+			<a href="#"><i class="fas fa-user"></i><span>Profil</span></a>
+			<a href="#"><i class="fas fa-sign-out-alt"></i><span>Odhlášení</span></a>
+			{else}
+			<a n:href="Uzivatel:login"><i class="fas fa-sign-in-alt"></i><span>Přihlášení</span></a>
+			<a n:href="Uzivatel:registrace"><i class="fas fa-user-plus"></i><span>Registrace</span></a>
+		{/if}
 	</nav>
 	<div class="slideshow-container">
 		<div class="mySlides" style="background-image: url({$basePath}/Fotografie/prilohy_24301/DSC05626.JPG)">
