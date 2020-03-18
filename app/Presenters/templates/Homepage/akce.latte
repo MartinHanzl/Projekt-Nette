@@ -1,0 +1,23 @@
+{block content}
+    {foreach $akce as $a}
+        <article class="home-article">
+            <h2>{$a->Nadpis}</h2>
+            <div class="article-info">
+                <div>
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>{$a->Datum|date: 'j. n. Y'}</span>
+                </div>
+                <div>
+                    <i class="fas fa-user"></i>
+                    <span>{$a->Uzivatele_ID}</span>
+                </div>
+                <div>
+                    <i class="fas fa-bookmark"></i>
+                    <span>{$a->Kategorie_Akce_ID}</span>
+                </div>
+            </div>
+            <a n:href="Homepage:akceShow"><div class='article-link'><i class='fas fa-chevron-right'></i></div></a>
+        </article>
+    {/foreach}
+    <iframe class="calendar" src="https://calendar.google.com/calendar/embed?src=hanzl.martas%40gmail.com&ctz=Europe%2FPrague" style="border: 0" width="700" height="600" frameborder="0" scrolling="no"></iframe>
+{/block}
