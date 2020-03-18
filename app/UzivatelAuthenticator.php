@@ -37,11 +37,11 @@ class UzivatelAuthenticator implements Nette\Security\IAuthenticator
         }
 
         if($row->Role_ID == 1) {
-            $status = "Běžný uživatel";
+            $status = 1;
         }
 
         if($row->Role_ID == 2) {
-            $status = "Správce";
+            $status = 2;
         }
 
         return new Nette\Security\Identity($row->uzivateleID, $status, ['email' => $row->Email]);

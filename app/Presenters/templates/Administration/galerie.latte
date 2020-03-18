@@ -1,0 +1,26 @@
+{block content}
+    <div class="main">
+        <div class="main-heading">
+            <h1>Přehled příspěvků</h1>
+        </div>
+        <a href="#" class="a-add add"><i class="fas fa-plus"></i><span>Přidat příspěvek</span></a>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Nadpis</th>
+                <th class="hide">Datum</th>
+                <th class="hide">Napsal/a</th>
+                <th class="hide">Ovládací prvky</th>
+            </tr>
+            {foreach $galerie as $g}
+                <tr>
+                    <td>{$g->Fotogalerie_ID}</td>
+                    <td><b>{$g->Nazev}</b></td>
+                    <td>{$g->Pridano|date: "j. n. Y"}</td>
+                    <td>{$g->Uzivatele_ID}</td>
+                    <td><a href='clanek.php?id=1' target='_blank'><i class='fas fa-eye'></i></a><a href='articleEdit.php?id=1'><i class='fas fa-edit'></i></a><a href='articleDelete.php?id=1'><i class='fas fa-trash-alt'></i></a></td>
+                </tr>
+            {/foreach}
+        </table>
+    </div>
+{/block}

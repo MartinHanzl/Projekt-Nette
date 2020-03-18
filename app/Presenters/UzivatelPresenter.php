@@ -92,4 +92,9 @@ final class UzivatelPresenter extends Nette\Application\UI\Presenter
             $form->addError("Tento email je již zabraný!");
         }
     }
+
+    public function actionOdhlas(){
+        $this->user->logout(true);
+        $this->redirect("Uzivatel:login");
+    }
 }
