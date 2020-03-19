@@ -29,7 +29,7 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
     }
 
     public function renderPrispevek($id) :void {
-        $this->template->prispevky = $this->database->table('prispevky')->get($id);
+        $this->template->prispevek = $this->database->table('prispevky')->where("prispevkyID", $id);
     }
 
     public function renderAkce() :void {

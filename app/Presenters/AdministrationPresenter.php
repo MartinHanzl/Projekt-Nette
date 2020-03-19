@@ -14,6 +14,17 @@ final class AdministrationPresenter extends Nette\Application\UI\Presenter {
         $this->setLayout("AdministrationLayout");
     }
 
+    public function beforeRender() {
+        if (!$this->user->isLoggedIn()) {
+            $this->redirect("Uzivatel:login");
+        }
+    }
+
+    public function renderUzivatele() :void {
+        $this->template->uzivatele = $this->database->table('uzivatele')
+            ->order('uzivateleID DESC');
+    }
+
     public function renderClanky() :void {
         $this->template->prispevky = $this->database->table('prispevky')
             ->order('prispevkyID DESC');
@@ -22,5 +33,10 @@ final class AdministrationPresenter extends Nette\Application\UI\Presenter {
     public function renderGalerie() :void {
         $this->template->galerie = $this->database->table('fotogalerie')
             ->order('Fotogalerie_ID DESC');
+    }
+
+    public function renderAkce() :void {
+        $this->template->akce = $this->database->table('akce')
+            ->order('akceID DESC');
     }
 }

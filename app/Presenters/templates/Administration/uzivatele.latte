@@ -1,0 +1,29 @@
+{block content}
+    <div class="main">
+        <div class="main-heading">
+            <h1>Přehled uživatelů</h1>
+        </div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Jméno</th>
+                <th class="hide">Příjmení</th>
+                <th class="hide">Email</th>
+                <th class="hide">Telefon</th>
+                <th class="hide">Oprávnění</th>
+                <th class="hide">Ovládací panely</th>
+            </tr>
+            {foreach $uzivatele as $u}
+                <tr>
+                    <td>{$u->uzivateleID}</td>
+                    <td>{$u->Jmeno}</td>
+                    <td>{$u->Prijmeni}</td>
+                    <td><b>{$u->Email}</b></td>
+                    <td>{$u->Telefon}</td>
+                    <td>{$u->Role_ID}</td>
+                    <td><a href='clanek.php?id=1' target='_blank'><i class='fas fa-eye'></i></a><a href='articleEdit.php?id=1'><i class='fas fa-edit'></i></a><a href='articleDelete.php?id=1'><i class='fas fa-trash-alt'></i></a></td>
+                </tr>
+            {/foreach}
+        </table>
+    </div>
+{/block}

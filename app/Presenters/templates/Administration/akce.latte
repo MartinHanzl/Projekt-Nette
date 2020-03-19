@@ -1,0 +1,28 @@
+{block content}
+    <div class="main">
+        <div class="main-heading">
+            <h1>Přehled událostí</h1>
+        </div>
+        <a n:href="Akce:add" class="a-add add"><i class="fas fa-plus"></i><span>Vytvořit událost</span></a>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Název</th>
+                <th class="hide">Datum</th>
+                <th class="hide">Napsal/a</th>
+                <th class="hide">Kategorie</th>
+                <th class="hide">Ovládací prvky</th>
+            </tr>
+            {foreach $akce as $a}
+                <tr>
+                    <td>{$a->akceID}</td>
+                    <td><b>{$a->Nadpis}</b></td>
+                    <td>{$a->Datum|date: "j. n. Y"}</td>
+                    <td>{$a->Uzivatele_ID}</td>
+                    <td>{$a->Kategorie_Akce_ID}</td>
+                    <td><a href='clanek.php?id=1' target='_blank'><i class='fas fa-eye'></i></a><a href='articleEdit.php?id=1'><i class='fas fa-edit'></i></a><a href='articleDelete.php?id=1'><i class='fas fa-trash-alt'></i></a></td>
+                </tr>
+            {/foreach}
+        </table>
+    </div>
+{/block}

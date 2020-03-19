@@ -5,20 +5,24 @@
     <meta name="viewport" content="width=device-width">
     <script src="https://kit.fontawesome.com/5c13d17743.js"></script>
     <link rel="stylesheet" href="{$basePath}/Styly/administrationBasic.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
     <title>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</title>
 </head>
 <body>
-<nav>
     <nav>
         <a href="#"><i class="fas fa-user"></i><span>Uživatelský profil</span></a>
-        <a href="#" class="basic-a"><i class="fas fa-users"></i><span>Uživatelé</span></a>
+        {if $user->getId() == 2}
+            <a n:href="Administration:uzivatele" class="basic-a"><i class="fas fa-users"></i><span>Uživatelé</span></a>
+        {/if}
         <a n:href="Administration:clanky" class="basic-a"><i class="fas fa-list"></i><span>Příspěvky</span></a>
         <a n:href="Administration:galerie" class="basic-a"><i class="fas fa-image"></i><span>Fotogalerie</span></a>
-        <a href="#" class="basic-a"><i class="fas fa-trophy"></i><span>Akce a závody</span></a>
-        <a href="#" class="basic-a" target="_blank"><i class="fas fa-globe"></i><span>Webová stránka</span></a>
-        <a href="#" class="basic-a"><i class="fas fa-sign-out-alt"></i><span>Odhlásit se</span></a>
+        <a n:href="Administration:akce" class="basic-a"><i class="fas fa-trophy"></i><span>Akce a závody</span></a>
+        <a n:href="Homepage:default" class="basic-a"><i class="fas fa-globe"></i><span>Webová stránka</span></a>
+        <a n:href="Uzivatel:odhlas" class="basic-a"><i class="fas fa-sign-out-alt"></i><span>Odhlásit se</span></a>
     </nav>
-</nav>
+
 {include content}
 </body>
 </html>

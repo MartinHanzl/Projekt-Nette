@@ -1,5 +1,24 @@
 {block content}
-    {foreach $prispevky as $prispevek}
-        <h1>{$prispevek->nadpis}</h1>
+    {foreach $prispevek as $p}
+        <article class="article">
+            <div class="article-header">
+                <h1>{$p->Nadpis}</h1>
+                <div class="clanek-info">
+                    <div class="article-info-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>{$p->Datum|date: "j. n. Y"}</span>
+                    </div>
+                    <div class="article-info-item">
+                        <i class="fas fa-user"></i>
+                        <span>{$p->Uzivatele_ID}</span>
+                    </div>
+                    <div class="article-info-item">
+                        <i class="fas fa-bookmark"></i>
+                        <span>{$p->Kategorie_Prispevky_ID}</span>
+                    </div>
+                </div>
+            </div>
+                <p>{$p->Text}</p>
+        </article>
     {/foreach}
 {/block}
