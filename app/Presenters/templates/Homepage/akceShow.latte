@@ -1,1 +1,24 @@
-{block content}{/block}
+{block content}
+    {foreach $akce as $a}
+        <article class="article">
+            <div class="article-header">
+                <h1>{$a->Nadpis}</h1>
+                <div class="clanek-info">
+                    <div class="article-info-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>{$a->Datum|date: "j. n. Y"}</span>
+                    </div>
+                    <div class="article-info-item">
+                        <i class="fas fa-user"></i>
+                        <span>{$a->Uzivatele_ID}</span>
+                    </div>
+                    <div class="article-info-item">
+                        <i class="fas fa-bookmark"></i>
+                        <span>{$a->Kategorie_Akce_ID}</span>
+                    </div>
+                </div>
+            </div>
+            <p>{$a->Popis|noescape}</p>
+        </article>
+    {/foreach}
+{/block}

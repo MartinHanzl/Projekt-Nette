@@ -37,10 +37,13 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
             ->order('akceID DESC');
     }
 
+    public function renderAkceShow($id) :void {
+        $this->template->akce = $this->database->table("akce")->where("akceID", $id);
+    }
+
     public function renderGalerie() :void {
         $this->template->galerie = $this->database->table('fotogalerie')
             ->order('Fotogalerie_ID DESC');
-
     }
 
     protected function createComponentContactForm() :Form {

@@ -97,4 +97,17 @@ final class UzivatelPresenter extends Nette\Application\UI\Presenter
         $this->user->logout(true);
         $this->redirect("Uzivatel:login");
     }
+
+    public function renderSelf() :void {
+        $this->setLayout("AdministrationLayout");
+        $this->template->uzivatel = $this->database->table('uzivatele')->where("uzivateleID", $this->user->getId());
+        $this->template->uClanek = $this->database->table("prispevky")->where("Uzivatele_ID", $this->user->getId())
+            ->order("prispevkyID DESC")
+            ->limit(1);
+    }
+
+    public function renderStrange($id) :void {
+        $this->setLayout("AdministrationLayout");
+        $this->template->uzivatel = $this->database->table('uzivatele')->where("uzivateleID", $id);
+    }
 }

@@ -1,0 +1,31 @@
+{block content}
+        <div class="main">
+            <div class="main-heading">
+                <h1>Uživatelský profil</h1>
+            </div>
+    {foreach $uzivatel as $u}
+            <table class="user-table">
+                <tr>
+                    <td>Jméno:</td>
+                    <td>{$u->Jmeno}</td>
+                </tr>
+                <tr>
+                    <td>Příjmení:</td>
+                    <td>{$u->Prijmeni}</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>{$u->Email}</td>
+                </tr>
+                <tr>
+                    <td>Telefon:</td>
+                    <td>{$u->Telefon}</td>
+                </tr>
+                <tr>
+                    <td>Úroveň oprávnění:</td>
+                    <td>{$u->Role_ID}</td>
+                </tr>
+            </table>
+        </div>
+    {/foreach}
+{/block}

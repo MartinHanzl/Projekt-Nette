@@ -54,7 +54,7 @@ final class AkcePresenter extends Nette\Application\UI\Presenter {
                 "Kategorie_Akce_ID" => $values->kategorie
             ]
         );
-        $this->redirect("Administration:clanky");
+        $this->redirect("Administration:akce");
     }
 
 

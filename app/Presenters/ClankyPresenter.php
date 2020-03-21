@@ -23,8 +23,13 @@ final class ClankyPresenter extends Nette\Application\UI\Presenter
     }
 
     protected function createComponentAddClanek() :Form {
+        $datum = date("Y-m-d");
         $form = new Form();
-        $form->addText("nadpis")
+        $form->addHidden("Datum")
+                ->setValue($datum);
+        $form->addHidden("Uzivatele_ID")
+                ->setValue($this->user->getId());
+        $form->addText("Nadpis")
             ->setRequired("Zadejte nadpis článku")
             ->setHtmlAttribute("placeholder", "Nadpis");
         $kategorie = [
@@ -35,7 +40,7 @@ final class ClankyPresenter extends Nette\Application\UI\Presenter
             5 => "Exhibice",
             6 => "Informace",
         ];
-        $form->addSelect("kategorie", '', $kategorie)
+        $form->addSelect("Kategorie_Prispevky_ID", '', $kategorie)
                 ->setRequired("Vyberte prosím kategorii článku!");
         $form->addTextArea("text")
                 ->setHtmlId("summernote");
@@ -43,16 +48,23 @@ final class ClankyPresenter extends Nette\Application\UI\Presenter
         $form->onSuccess[] = [$this, 'addFormSucceeded'];
         return $form;
     }
-    public function addFormSucceeded(Form $form, \stdClass $values) : void {
-        $this->database->table("prispevky")->insert(
-            [
-                "Nadpis" => $values->nadpis,
-                "Text" => $values->text,
-                "Datum" => date("Y-m-d"),
-                "Uzivatele_ID" => $this->user->getId(),
-                "Kategorie_Prispevky_ID" => $values->kategorie
-            ]
-        );
+
+    public function actionEdit($id) :void {
+        $post = $this->database->table('prispevky')->where("prispevkyID", $id);
+        if(!$post) {
+            $this->error("Příspěvek nebyl nalezen");
+        }
+        $this["addClanek"]->setDefaults($post->toArray());
+    }
+
+    public function addFormSucceeded(Form $form, array $values) : void {
+        $postID = $this->getParameter("id");
+        if($postID) {
+            $prispevek = $this->database->table("prispevky")->where("prispevkyID", $postID);
+            $prispevek->update($values);
+        } else {
+            $prispevek = $this->database->table("prispevky")->insert($values);
+        }
         $this->redirect("Administration:clanky");
     }
 
