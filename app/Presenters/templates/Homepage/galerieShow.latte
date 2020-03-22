@@ -1,0 +1,11 @@
+{block content}
+    <div class="gallery-main">
+        <div class="images">
+            {foreach $foto as $f}
+                <a href="{$basePath}/Galerie/{$f->Foto}]" data-lightbox="example-set">
+                    <img src="{$basePath}/Galerie/{$f->Foto}" class="gallery-img">
+                </a>
+            {/foreach}
+        </div>
+    </div>
+{/block}

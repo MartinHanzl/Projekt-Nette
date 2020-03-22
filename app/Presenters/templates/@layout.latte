@@ -5,6 +5,8 @@
 	<meta name="viewport" content="width=device-width">
 	<script src="https://kit.fontawesome.com/5c13d17743.js"></script>
 	<link rel="stylesheet" href="{$basePath}/Styly/basic.css">
+	<link rel="stylesheet" href="{$basePath}/Styly/lightbox.css">
+	<script src="{$basePath}/Javascript/lightbox-plus-jquery.js"></script>
 	<title>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</title>
 </head>
 <body>
@@ -15,7 +17,7 @@
 		<a n:href="Homepage:galerie"><i class="fas fa-image"></i><span>Galerie</span></a>
 		<a n:href="Homepage:kontakty"><i class="fas fa-address-card"></i><span>Kontakty</span></a>
 		{if $user->isLoggedIn()}
-			<a n:href="Administration:clanky"><i class="fas fa-user"></i><span>Profil</span></a>
+			<a n:href="Uzivatel:self"><i class="fas fa-user"></i><span>Profil</span></a>
 			<a n:href="Uzivatel:odhlas"><i class="fas fa-sign-out-alt"></i><span>Odhlášení</span></a>
 			{else}
 			<a n:href="Uzivatel:login"><i class="fas fa-sign-in-alt"></i><span>Přihlášení</span></a>

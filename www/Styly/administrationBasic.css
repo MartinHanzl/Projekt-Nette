@@ -227,9 +227,8 @@ button {
 }
 
 .images {
-    padding: 1% 1% 15% 1%;
-    display: flex;
-    flex-direction: column;
+    padding: 1%;
+    padding-bottom: 15%;
 }
 
 .images-img {
@@ -255,14 +254,15 @@ button {
 
 @media (min-width: 992px) {
     .images {
-        flex-direction: row;
-        justify-content: space-evenly;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
         padding-bottom: 0;
     }
 
     .images-img {
-        width: 400px;
-        margin: 2%;
+        width: 300px;
+        margin-bottom: 2%;
     }
 }
 

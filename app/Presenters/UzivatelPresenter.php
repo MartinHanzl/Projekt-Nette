@@ -110,4 +110,14 @@ final class UzivatelPresenter extends Nette\Application\UI\Presenter
         $this->setLayout("AdministrationLayout");
         $this->template->uzivatel = $this->database->table('uzivatele')->where("uzivateleID", $id);
     }
+
+    public function actionUp($id) {
+        $this->database->table("uzivatele")->where("uzivateleID", $id)->update(["Role_ID" => 2]);
+        $this->redirect("Administration:uzivatele");
+    }
+
+    public function actionDown($id) {
+        $this->database->table("uzivatele")->where("uzivateleID", $id)->update(["Role_ID" => 1]);
+        $this->redirect("Administration:uzivatele");
+    }
 }

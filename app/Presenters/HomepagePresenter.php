@@ -46,6 +46,10 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
             ->order('Fotogalerie_ID DESC');
     }
 
+    public function renderGalerieShow($id) :void {
+        $this->template->foto = $this->database->table('fotografie')->where("Fotogalerie_Fotogalerie_ID", $id);
+    }
+
     protected function createComponentContactForm() :Form {
         $form = new Form;
         $form->addEmail('email')

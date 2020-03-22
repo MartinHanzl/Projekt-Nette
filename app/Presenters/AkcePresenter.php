@@ -16,13 +16,13 @@ final class AkcePresenter extends Nette\Application\UI\Presenter {
 
     protected function createComponentAddAkce(): Form {
         $form = new Form();
-        $form->addText("nadpis")
+        $form->addText("Nadpis")
                 ->setRequired("Zadejte nadpis událsoti")
                 ->setHtmlAttribute("placeholder", "Název akce");
-        $form->addText("datum")
+        $form->addText("Datum")
                 ->setRequired("Vybrete prosím čas konání události!")
                 ->setType("date");
-        $form->addText("cas")
+        $form->addText("Cas")
                 ->setRequired("Vybrete prosím čas konání události!")
                 ->setType("time");
         $kategorie = [
@@ -33,30 +33,41 @@ final class AkcePresenter extends Nette\Application\UI\Presenter {
             5 => "Exhibice",
             6 => "Informace",
         ];
-        $form->addSelect("kategorie", '', $kategorie)
+        $form->addSelect("Kategorie_Akce_ID", '', $kategorie)
             ->setRequired("Vyberte prosím kategorii události!");
-        $form->addTextArea("text")
+        $form->addTextArea("Popis")
                 ->setHtmlId("summernote");
-        $form->addSubmit("btnAddd", "Vytvořit událost");
+        $form->addHidden("Uzivatele_ID")
+                ->setValue($this->user->getId());
+        $form->addSubmit("btnAddd", "Uložit a publikovat událost");
 
         $form->onSuccess[] = [$this, 'addFormSucceeded'];
         return $form;
     }
 
-    public function addFormSucceeded(Form $form, \stdClass $values) : void {
-        $this->database->table("akce")->insert(
-            [
-                "Nadpis" => $values->nadpis,
-                "Datum" => $values->datum,
-                "Cas" => $values->text,
-                "Popis" => $values->text,
-                "Uzivatele_ID" => $this->user->getId(),
-                "Kategorie_Akce_ID" => $values->kategorie
-            ]
-        );
+    public function actionEdit($id) :void{
+        $post = $this->database->table('akce')->where("akceID", $id)->fetch();
+        if(!$post) {
+            $this->error("Událost nebyla nalezena!");
+        }
+        $this["addAkce"]->setDefaults($post->toArray());
+    }
+
+    public function addFormSucceeded(Form $form, array $values) : void {
+        $postID = $this->getParameter("id");
+        if($postID) {
+            $akce = $this->database->table("akce")->where("akceID", $postID);
+            $akce->update($values);
+        } else {
+            $this->database->table("akce")->insert($values);
+        }
         $this->redirect("Administration:akce");
     }
 
-
+    public function actionVymaz($id) :void {
+        $akce = $this->database->table("akce")->where("akceID", $id);
+        $akce->delete();
+        $this->redirect("Administration:akce");
+    }
 
 }

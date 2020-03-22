@@ -1,0 +1,12 @@
+<div class="main">
+    <div class="main-heading">
+        <h1>Editace fotogalerie</h1>
+    </div>
+    <div class="images">
+        {foreach $foto as $f}
+        <div class="images-img">
+            <img src="{$basePath}/Galerie/{$f->Foto}">
+        </div>
+        {/foreach}
+    </div>
+</div>

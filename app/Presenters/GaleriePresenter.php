@@ -21,7 +21,7 @@ final class GaleriePresenter extends Nette\Application\UI\Presenter {
         $form->addText("nazev")
                 ->setRequired("Zadejte prosím název fotogalerie!")
                 ->setHtmlAttribute("placeholder", "Název fotogalerie");
-        $form->addUpload("obrazky")
+        $form->addMultiUpload("obrazky")
                 ->setRequired("Vybrete prosím jeden nebo více obrázků");
         $form->addSubmit("btnAdd", "Vytvořit fotogalerii");
         $form->onSuccess[] = [$this, 'addFormSucceeded'];
@@ -29,27 +29,34 @@ final class GaleriePresenter extends Nette\Application\UI\Presenter {
     }
     public function addFormSucceeded(Form $form, \stdClass $values) : void {
         $slozka = $values->nazev;
-        mkdir("Galerie/$slozka", 0777);
-        $this->database->table("fotogalerie")->insert(
+        //mkdir("./Galerie/$slozka", 0777);
+        $row = $this->database->table("fotogalerie")->insert(
             [
                 "Nazev" => $values->nazev,
                 "Pridano" => date("Y-m-d"),
                 "Uzivatele_ID" => $this->user->getId(),
             ]
         );
-        $lastID = $this->database->getInsertId();
+        $lastID = $row->Fotogalerie_ID;
         foreach ($values->obrazky as $obrazek) {
             if($obrazek->isImage() && $obrazek->isOk()) {
-                $obrazek->move("./Galerie/$slozka/" . $obrazek);
+                $file_ext = strtolower(mb_substr($obrazek->getSanitizedName(), strrpos($obrazek->getSanitizedName(), ".")));
+                $filename = uniqid(rand(0,20), TRUE).$file_ext;
+                $obrazek->move("./Galerie/" . $filename);
                 $this->database->table("fotografie")->insert(
                   [
-                      "Foto" => $obrazek,
+                      "Foto" => $filename,
                       "Fotogalerie_Fotogalerie_ID" => $lastID,
                   ]
                 );
             }
         }
         $this->redirect("Administration:galerie");
+    }
+
+    public function renderEdit($id) :void {
+        $this->setLayout("AdministrationLayout");
+        $this->template->foto = $this->database->table("fotografie")->where("Fotogalerie_Fotogalerie_ID", $id);
     }
 
 }

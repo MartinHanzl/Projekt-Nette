@@ -23,7 +23,7 @@
                     <td>
                         <a n:href='Homepage:prispevek $p->prispevkyID'><i class='fas fa-eye'></i></a>
                         <a n:href='Clanky:edit $p->prispevkyID'><i class='fas fa-edit'></i></a>
-                        <a href='articleDelete.php?id=1'><i class='fas fa-trash-alt'></i></a>
+                        <a n:href='Clanky:vymaz $p->prispevkyID'><i class='fas fa-trash-alt'></i></a>
                     </td>
                 </tr>
             {/foreach}

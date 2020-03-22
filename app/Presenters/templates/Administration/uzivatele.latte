@@ -26,7 +26,11 @@
                         <a n:href='Uzivatel:self'><i class='fas fa-eye'></i></a>
                         {else}
                         <a n:href='Uzivatel:strange $u->uzivateleID'><i class='fas fa-eye'></i></a>
-                        <a n:href='Uzivatel:up'><i class='fas fa-user-edit'></i></a>
+                        {if $u->Role_ID == 1}
+                        <a n:href='Uzivatel:up'><i class='fas fa-chevron-up'></i></a>
+                            {else}
+                            <a n:href='Uzivatel:down'><i class='fas fa-chevron-down'></i></a>
+                        {/if}
                         <a href='#'><i class='fas fa-trash-alt'></i></a>
                     {/if}
                     </td>

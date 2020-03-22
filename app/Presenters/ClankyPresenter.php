@@ -42,7 +42,7 @@ final class ClankyPresenter extends Nette\Application\UI\Presenter
         ];
         $form->addSelect("Kategorie_Prispevky_ID", '', $kategorie)
                 ->setRequired("Vyberte prosím kategorii článku!");
-        $form->addTextArea("text")
+        $form->addTextArea("Text")
                 ->setHtmlId("summernote");
         $form->addSubmit("btnAdd", "Zapsat příspěvek");
         $form->onSuccess[] = [$this, 'addFormSucceeded'];
@@ -50,7 +50,7 @@ final class ClankyPresenter extends Nette\Application\UI\Presenter
     }
 
     public function actionEdit($id) :void {
-        $post = $this->database->table('prispevky')->where("prispevkyID", $id);
+        $post = $this->database->table('prispevky')->where("prispevkyID", $id)->fetch();
         if(!$post) {
             $this->error("Příspěvek nebyl nalezen");
         }
@@ -69,7 +69,9 @@ final class ClankyPresenter extends Nette\Application\UI\Presenter
     }
 
     public function actionVymaz($id){
-        $this->database->table("prispevky")->where("prispevkyID", $id)->delete();
+        $prispevek = $this->database->table("prispevky")->where("prispevkyID", $id);
+        $prispevek->delete();
+        $this->redirect("Administration:clanky");
     }
 
 }
