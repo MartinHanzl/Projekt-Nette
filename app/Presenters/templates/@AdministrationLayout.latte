@@ -13,7 +13,7 @@
 <body>
     <nav>
         <a n:href='Uzivatel:self'><i class="fas fa-user"></i><span>Uživatelský profil</span></a>
-        {if $user->getId() < 3}
+        {if $user->getIdentity()->Role == 2}
             <a n:href="Administration:uzivatele" class="basic-a"><i class="fas fa-users"></i><span>Uživatelé</span></a>
         {/if}
         <a n:href="Administration:clanky" class="basic-a"><i class="fas fa-list"></i><span>Příspěvky</span></a>

@@ -1,12 +1,22 @@
-<div class="main">
-    <div class="main-heading">
-        <h1>Editace fotogalerie</h1>
-    </div>
-    <div class="images">
-        {foreach $foto as $f}
-        <div class="images-img">
-            <img src="{$basePath}/Galerie/{$f->Foto}">
+{block content}
+    <div class="main">
+        <div class="main-heading">
+            <h1>Editace fotogalerie</h1>
         </div>
-        {/foreach}
+        {if $user->getIdentity()->Role == 1}
+            <div class="error">
+                <i class="fas fa-exclamation-triangle fa-2x"></i>
+                <h3>Do této sekce bohužel nemáte přístup. Pokud si myslíte, že se jedná o chybu, kontaktujte prosím hlavního administrátora!</h3>
+            </div>
+        {else}
+        <div class="images">
+            {foreach $foto as $f}
+                <div class="images-img">
+                    <img src="{$basePath}/Galerie/{$f->Foto}">
+                    <a n:href="Galerie:vymazFoto $f->ID"><i class="fas fa-trash"></i><span>Odstranit fotografii</span></a>
+                </div>
+            {/foreach}
+        </div>
+        {/if}
     </div>
-</div>
+{/block}

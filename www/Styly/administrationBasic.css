@@ -282,11 +282,6 @@ button {
 @media (min-width: 568px) {
     .add {
         width: 25%;
-    }
-}
-
-@media (min-width: 568px) {
-    .add {
         padding: 2%;
         width: 15%;
     }
@@ -304,4 +299,24 @@ button {
 .note-editor.note-frame {
     width: 100%;
     max-width: 100%;
+}
+
+.error {
+    flex-direction: column;
+    padding: 3%;
+    align-items: center;
+    display: flex;
+    border-radius: 3px;
+    margin: 2%;
+    background-color: #d48a00;
+    color: white;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .error {
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+    }
 }

@@ -44,6 +44,6 @@ class UzivatelAuthenticator implements Nette\Security\IAuthenticator
             $status = 2;
         }
 
-        return new Nette\Security\Identity($row->uzivateleID, $status, ['email' => $row->Email]);
+        return new Nette\Security\Identity($row->uzivateleID, $status, ['email' => $row->Email, "Role" => $status]);
     }
 }

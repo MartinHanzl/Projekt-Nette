@@ -29,7 +29,6 @@ final class GaleriePresenter extends Nette\Application\UI\Presenter {
     }
     public function addFormSucceeded(Form $form, \stdClass $values) : void {
         $slozka = $values->nazev;
-        //mkdir("./Galerie/$slozka", 0777);
         $row = $this->database->table("fotogalerie")->insert(
             [
                 "Nazev" => $values->nazev,
@@ -57,6 +56,20 @@ final class GaleriePresenter extends Nette\Application\UI\Presenter {
     public function renderEdit($id) :void {
         $this->setLayout("AdministrationLayout");
         $this->template->foto = $this->database->table("fotografie")->where("Fotogalerie_Fotogalerie_ID", $id);
+    }
+
+    public function actionVymazFoto($id) :void {
+        $foto = $this->database->table("fotografie")->where("ID", $id);
+        $foto->delete();
+        $this->redirect("Administration:galerie");
+    }
+
+    public function actionVymazGalerii($id) {
+        $foto = $this->database->table("fotografie")->where("Fotogalerie_Fotogalerie_ID", $id);
+        $foto->delete();
+        $galerie = $this->database->table("fotogalerie")->where("Fotogalerie_ID", $id);
+        $galerie->delete();
+        $this->redirect("Administration:galerie");
     }
 
 }

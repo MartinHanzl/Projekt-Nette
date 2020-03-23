@@ -3,7 +3,14 @@
         <div class="main-heading">
             <h1>Editování příspěvku</h1>
         </div>
-        {control addClanek}
+        {if $user->getIdentity()->Role == 1}
+            <div class="error">
+                <i class="fas fa-exclamation-triangle fa-2x"></i>
+                <h3>Do této sekce bohužel nemáte přístup. Pokud si myslíte, že se jedná o chybu, kontaktujte prosím hlavního administrátora!</h3>
+            </div>
+        {else}
+            {control addClanek}
+        {/if}
     </div>
     <script>
         $(document).ready(function() {

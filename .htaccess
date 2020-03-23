@@ -1,1 +1,5 @@
-Require all denied
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www\.)?martinhanzl\.cz$
+RewriteRule ^$ www/ [L]
+RewriteCond %{HTTP_HOST} ^(www\.)?martinhanzl\.cz$
+RewriteRule (.*) www/$1 [L]
