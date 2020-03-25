@@ -62,8 +62,10 @@ final class ClankyPresenter extends Nette\Application\UI\Presenter
         if($postID) {
             $prispevek = $this->database->table("prispevky")->where("prispevkyID", $postID);
             $prispevek->update($values);
+            $this->flashMessage("Příspěvek byl úspěšně upraven!", 'success');
         } else {
             $prispevek = $this->database->table("prispevky")->insert($values);
+            $this->flashMessage("Příspěvek byl úspěšně publikován!", 'success');
         }
         $this->redirect("Administration:clanky");
     }
@@ -71,6 +73,7 @@ final class ClankyPresenter extends Nette\Application\UI\Presenter
     public function actionVymaz($id){
         $prispevek = $this->database->table("prispevky")->where("prispevkyID", $id);
         $prispevek->delete();
+        $this->flashMessage("Příspěvek byl vymazán!", 'warning');
         $this->redirect("Administration:clanky");
     }
 

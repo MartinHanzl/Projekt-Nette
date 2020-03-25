@@ -18,36 +18,42 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
         $this->database = $database;
     }
     public function renderDefault() :void {
-        $this->template->prispevky = $this->database->table('prispevky')
-            ->order('prispevkyID DESC')
-            ->limit(3);
+        $prispevky = $this->database->query("SELECT * FROM prispevky LEFT JOIN kategorie_prispevky ON kategorie_prispevky.kategoriePrispevkyID = prispevky.Kategorie_Prispevky_ID LEFT JOIN uzivatele ON uzivatele.uzivateleID = prispevky.Uzivatele_ID ORDER BY prispevkyID DESC LIMIT 3 ");
+        $this->template->prispevky = $prispevky;
     }
 
     public function renderPrispevky() :void {
-        $this->template->prispevky = $this->database->table('prispevky')
-            ->order('prispevkyID DESC');
+        $prispevky = $this->database->query("SELECT * FROM prispevky LEFT JOIN kategorie_prispevky ON kategorie_prispevky.kategoriePrispevkyID = prispevky.Kategorie_Prispevky_ID LEFT JOIN uzivatele ON uzivatele.uzivateleID = prispevky.Uzivatele_ID ORDER BY prispevkyID DESC");
+        $this->template->prispevky = $prispevky;
     }
 
     public function renderPrispevek($id) :void {
-        $this->template->prispevek = $this->database->table('prispevky')->where("prispevkyID", $id);
+        $prispevek = $this->database->query("SELECT * FROM prispevky LEFT JOIN uzivatele ON uzivatele.uzivateleID = prispevky.Uzivatele_ID LEFT JOIN kategorie_prispevky ON kategorie_prispevky.kategoriePrispevkyID = prispevky.Kategorie_Prispevky_ID WHERE prispevkyID = '$id';");
+        $this->template->prispevek = $prispevek;//$this->database->table('prispevky')->where("prispevkyID", $id);
     }
 
     public function renderAkce() :void {
-        $this->template->akce = $this->database->table('akce')
-            ->order('akceID DESC');
+        $akce = $this->database->query("SELECT * FROM akce LEFT JOIN kategorie_akce ON kategorie_akce.kategorieAkceID = akce.Kategorie_Akce_ID LEFT JOIN uzivatele ON uzivatele.uzivateleID = akce.Uzivatele_ID ORDER BY Datum ASC");
+        $this->template->akce = $akce;
     }
 
     public function renderAkceShow($id) :void {
-        $this->template->akce = $this->database->table("akce")->where("akceID", $id);
+        $akce = $this->database->query("SELECT * FROM akce LEFT JOIN kategorie_akce ON kategorie_akce.kategorieAkceID = akce.Kategorie_Akce_ID LEFT JOIN uzivatele ON uzivatele.uzivateleID = akce.Uzivatele_ID WHERE akce.akceID = '$id'");
+        $this->template->akce = $akce;
     }
 
     public function renderGalerie() :void {
-        $this->template->galerie = $this->database->table('fotogalerie')
-            ->order('Fotogalerie_ID DESC');
+        $galerie = $this->database->query("SELECT * FROM fotogalerie LEFT JOIN uzivatele ON uzivatele.uzivateleID = fotogalerie.Uzivatele_ID ORDER BY Fotogalerie_ID DESC");
+        $this->template->galerie = $galerie;
     }
 
     public function renderGalerieShow($id) :void {
         $this->template->foto = $this->database->table('fotografie')->where("Fotogalerie_Fotogalerie_ID", $id);
+    }
+
+    public function renderKategorie($id) :void {
+        $prispevek = $this->database->query("SELECT * FROM prispevky LEFT JOIN kategorie_prispevky ON kategorie_prispevky.kategoriePrispevkyID = prispevky.Kategorie_Prispevky_ID LEFT JOIN uzivatele ON uzivatele.uzivateleID = prispevky.Uzivatele_ID WHERE prispevky.Kategorie_Prispevky_ID = '$id' ORDER BY prispevkyID DESC");
+        $this->template->prispevky = $prispevek;
     }
 
     protected function createComponentContactForm() :Form {

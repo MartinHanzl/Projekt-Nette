@@ -50,6 +50,7 @@ final class GaleriePresenter extends Nette\Application\UI\Presenter {
                 );
             }
         }
+        $this->flashMessage("Fotografie byla úspěšně vytvořena!", 'success');
         $this->redirect("Administration:galerie");
     }
 
@@ -61,6 +62,7 @@ final class GaleriePresenter extends Nette\Application\UI\Presenter {
     public function actionVymazFoto($id) :void {
         $foto = $this->database->table("fotografie")->where("ID", $id);
         $foto->delete();
+        $this->flashMessage("Fotografie byla úspěšně smazána!", 'warning');
         $this->redirect("Administration:galerie");
     }
 
@@ -69,6 +71,7 @@ final class GaleriePresenter extends Nette\Application\UI\Presenter {
         $foto->delete();
         $galerie = $this->database->table("fotogalerie")->where("Fotogalerie_ID", $id);
         $galerie->delete();
+        $this->flashMessage("Fotogalerie byla úspěšně smazána!", 'warning');
         $this->redirect("Administration:galerie");
     }
 

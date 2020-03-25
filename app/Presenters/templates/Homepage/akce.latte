@@ -9,11 +9,11 @@
                 </div>
                 <div>
                     <i class="fas fa-user"></i>
-                    <span>{$a->Uzivatele_ID}</span>
+                    <span>{$a->Jmeno . " " . $a->Prijmeni}</span>
                 </div>
                 <div>
                     <i class="fas fa-bookmark"></i>
-                    <span>{$a->Kategorie_Akce_ID}</span>
+                    <span>{$a->Nazev}</span>
                 </div>
             </div>
             <a n:href="Homepage:akceShow $a->akceID"><div class='article-link'><i class='fas fa-chevron-right'></i></div></a>

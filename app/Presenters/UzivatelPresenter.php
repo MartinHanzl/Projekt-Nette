@@ -37,6 +37,7 @@ final class UzivatelPresenter extends Nette\Application\UI\Presenter
     public function prihlasFormSucceeded(Form $form, \stdClass $values) : void {
         try {
             $this->user->login($values->email, $values->heslo);
+            $this->flashMessage("Přihlášení proběhlo úspěšně", 'success');
             $this->redirect("Homepage:default");
         }catch (Nette\Security\AuthenticationException $exception){
             $form->addError($exception->getMessage());
@@ -100,24 +101,40 @@ final class UzivatelPresenter extends Nette\Application\UI\Presenter
 
     public function renderSelf() :void {
         $this->setLayout("AdministrationLayout");
-        $this->template->uzivatel = $this->database->table('uzivatele')->where("uzivateleID", $this->user->getId());
-        $this->template->uClanek = $this->database->table("prispevky")->where("Uzivatele_ID", $this->user->getId())
-            ->order("prispevkyID DESC")
-            ->limit(1);
+        $id = $this->user->getId();
+        $uzivatel = $this->database->query("SELECT * FROM uzivatele LEFT JOIN role ON role.ID = uzivatele.Role_ID WHERE uzivatele.uzivateleID = '$id'");
+        $this->template->uzivatel = $uzivatel;
     }
 
     public function renderStrange($id) :void {
         $this->setLayout("AdministrationLayout");
-        $this->template->uzivatel = $this->database->table('uzivatele')->where("uzivateleID", $id);
+        $uzivatel = $this->database->query("SELECT * FROM uzivatele LEFT JOIN role ON role.ID = uzivatele.Role_ID WHERE uzivatele.uzivateleID = '$id'");
+        $this->template->uzivatel = $uzivatel;
     }
 
     public function actionUp($id) {
-        $this->database->table("uzivatele")->where("uzivateleID", $id)->update(["Role_ID" => 2]);
+        $up = $this->database->query("UPDATE uzivatele SET Role_ID= 2 WHERE uzivateleID = '$id'");
+        if(!$up) {
+            $this->flashMessage("Nepodařilo se upravit uživatelské oprávnění!", "error");
+        } else {
+            $this->flashMessage("Uživatelské oprávnění bylo úspěšně upraveno!", 'success');
+        }
         $this->redirect("Administration:uzivatele");
     }
 
     public function actionDown($id) {
-        $this->database->table("uzivatele")->where("uzivateleID", $id)->update(["Role_ID" => 1]);
+        $down = $this->database->query("UPDATE uzivatele SET Role_ID = 1 WHERE uzivateleID = '$id'");
+        if(!$down) {
+            $this->flashMessage("Nepodařilo se upravit uživatelské oprávnění!", "error");
+        } else {
+            $this->flashMessage("Uživatelské oprávnění bylo úspěšně upraveno!", 'success');
+        }
+        $this->redirect("Administration:uzivatele");
+    }
+
+    public function actionVymaz($id) :void {
+        $userID = $this->user->getId();
+        $delete = $this->database->query("UPDATE prispevky SET prispevky.uzivatele_ID = '$userID' WHERE Uzivatele_ID = '$id'; UPDATE akce SET akce.Uzivatele_ID = '$userID' WHERE Uzivatele_ID = '$id'; UPDATE fotogalerie SET fotogalerie.Uzivatele_ID = '$userID' WHERE Uzivatele_ID = '$id'; DELETE FROM uzivatele WHERE uzivateleID = '$id'");
         $this->redirect("Administration:uzivatele");
     }
 }

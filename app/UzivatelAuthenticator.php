@@ -21,11 +21,10 @@ class UzivatelAuthenticator implements Nette\Security\IAuthenticator
         $this->passwords = $passwords;
     }
 
-    public function authenticate(array $credentials): Nette\Security\IIdentity
-    {
+    public function authenticate(array $credentials): Nette\Security\IIdentity {
         [$email, $heslo] = $credentials;
 
-        $row = $this->database->table('Uzivatele')
+        $row = $this->database->table('uzivatele')
             ->where('email', $email)->fetch();
 
         if (!$row) {

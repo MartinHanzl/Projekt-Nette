@@ -320,3 +320,25 @@ button {
         align-items: center;
     }
 }
+
+.alert {
+    width: 100%;
+    padding: 1%;
+    text-align: center;
+    margin: 1%;
+}
+
+.alert-success {
+    background-color: darkgreen;
+    color: white;
+}
+
+.alert-warning {
+    background-color: #d48a00;
+    color: white;
+}
+
+.alert-error {
+    background-color: darkred;
+    color: white;
+}

@@ -3,6 +3,7 @@
         <div class="main-heading">
             <h1>Přehled uživatelů</h1>
         </div>
+        <div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type"><h3>{$flash->message}</h3></div>
         {if $user->getIdentity()->Role == 1}
             <div class="error">
                 <i class="fas fa-exclamation-triangle fa-2x"></i>
@@ -26,8 +27,8 @@
                     <td>{$u->Prijmeni}</td>
                     <td><b>{$u->Email}</b></td>
                     <td>{$u->Telefon}</td>
-                    <td>{$u->Role_ID}</td>
-                    <td>
+                    <td>{$u->Nazev}</td>
+                    <td class="last-td">
                     {if $u->uzivateleID == $user->getId()}
                         <a n:href='Uzivatel:self'><i class='fas fa-eye'></i></a>
                         {else}
@@ -37,7 +38,7 @@
                             {else}
                             <a n:href='Uzivatel:down'><i class='fas fa-chevron-down'></i></a>
                         {/if}
-                        <a href='#'><i class='fas fa-trash-alt'></i></a>
+                        <a n:href='Uzivatel:vymaz $u->uzivateleID'><i class='fas fa-trash-alt'></i></a>
                     {/if}
                     </td>
                 </tr>

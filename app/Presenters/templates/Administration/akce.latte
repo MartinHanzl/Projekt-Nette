@@ -3,6 +3,7 @@
         <div class="main-heading">
             <h1>Přehled událostí</h1>
         </div>
+        <div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type"><h3>{$flash->message}</h3></div>
         <a n:href="Akce:add" class="a-add add"><i class="fas fa-plus"></i><span>Vytvořit událost</span></a>
         <table>
             <tr>
@@ -18,11 +19,16 @@
                     <td>{$a->akceID}</td>
                     <td><b>{$a->Nadpis}</b></td>
                     <td>{$a->Datum|date: "j. n. Y"}</td>
-                    <td>{$a->Uzivatele_ID}</td>
-                    <td>{$a->Kategorie_Akce_ID}</td>
-                    <td><a n:href='Homepage:akceShow $a->akceID'><i class='fas fa-eye'></i></a>
+                    <td>{$a->Jmeno . " " . $a->Prijmeni}</td>
+                    <td>{$a->Nazev}</td>
+                    <td class="last-td">
+                        {if $user->getIdentity()->Role == 1}
+                        <a n:href='Homepage:akceShow $a->akceID'><i class='fas fa-eye'></i></a>
+                        {else}
+                        <a n:href='Homepage:akceShow $a->akceID'><i class='fas fa-eye'></i></a>
                         <a n:href='Akce:edit $a->akceID'><i class='fas fa-edit'></i></a>
                         <a n:href='Akce:vymaz $a->akceID'><i class='fas fa-trash-alt'></i></a>
+                        {/if}
                     </td>
                 </tr>
             {/foreach}

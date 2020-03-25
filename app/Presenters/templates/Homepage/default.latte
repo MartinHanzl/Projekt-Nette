@@ -11,11 +11,11 @@
 					</div>
 					<div>
 						<i class="fas fa-user"></i>
-						<span>{$prispevek->Uzivatele_ID}</span>
+						<span>{$prispevek->Jmeno} {$prispevek->Prijmeni}</span>
 					</div>
 					<div>
 						<i class="fas fa-bookmark"></i>
-						<span>{$prispevek->Kategorie_Prispevky_ID}</span>
+						<span>{$prispevek->Nazev}</span>
 					</div>
 				</div>
 				<p>{$prispevek->Text|noescape|truncate:255}</p>

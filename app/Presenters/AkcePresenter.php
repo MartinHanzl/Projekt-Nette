@@ -23,8 +23,8 @@ final class AkcePresenter extends Nette\Application\UI\Presenter {
                 ->setRequired("Vybrete prosím čas konání události!")
                 ->setType("date");
         $form->addText("Cas")
-                ->setRequired("Vybrete prosím čas konání události!")
-                ->setType("time");
+                ->setHtmlAttribute("placeholder", "Čas konání (formát --:--)")
+                ->setRequired("Vybrete prosím čas konání události!");
         $kategorie = [
             1 => "Závod",
             2 => "Nácvik",
@@ -58,8 +58,10 @@ final class AkcePresenter extends Nette\Application\UI\Presenter {
         if($postID) {
             $akce = $this->database->table("akce")->where("akceID", $postID);
             $akce->update($values);
+            $this->flashMessage("Událost byla úspěšně upravena!", 'success');
         } else {
             $this->database->table("akce")->insert($values);
+            $this->flashMessage("Událost byla úspěšně vytvořena!", "success");
         }
         $this->redirect("Administration:akce");
     }
@@ -67,6 +69,7 @@ final class AkcePresenter extends Nette\Application\UI\Presenter {
     public function actionVymaz($id) :void {
         $akce = $this->database->table("akce")->where("akceID", $id);
         $akce->delete();
+        $this->flashMessage("Událost byla úspěšně vymazána!", 'warning');
         $this->redirect("Administration:akce");
     }
 
