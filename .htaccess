@@ -1,4 +1,5 @@
-RewriteCond %{HTTP_HOST} ^(www\.)?martinhanzl\.cz$
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www\.)?hanzlma.mp.spse-net\.cz$
 RewriteRule ^$ www/ [L]
-RewriteCond %{HTTP_HOST} ^(www\.)?martinhanzl\.cz$
+RewriteCond %{HTTP_HOST} ^(www\.)?hanzlma.mp.spse-net\.cz$
 RewriteRule (.*) www/$1 [L]

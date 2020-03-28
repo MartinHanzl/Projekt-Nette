@@ -6,6 +6,8 @@ namespace App\Presenters;
 use Nette;
 use Nette\Application\UI\Form;
 use Nette\ComponentModel\IComponent;
+use Nette\Mail\Message;
+use Nette\Mail\SendmailMailer;
 
 final class ClankyPresenter extends Nette\Application\UI\Presenter
 {
@@ -44,7 +46,7 @@ final class ClankyPresenter extends Nette\Application\UI\Presenter
                 ->setRequired("Vyberte prosím kategorii článku!");
         $form->addTextArea("Text")
                 ->setHtmlId("summernote");
-        $form->addSubmit("btnAdd", "Zapsat příspěvek");
+        $form->addSubmit("btnAdd", "Uložit a publikovat příspěvek");
         $form->onSuccess[] = [$this, 'addFormSucceeded'];
         return $form;
     }
@@ -65,6 +67,17 @@ final class ClankyPresenter extends Nette\Application\UI\Presenter
             $this->flashMessage("Příspěvek byl úspěšně upraven!", 'success');
         } else {
             $prispevek = $this->database->table("prispevky")->insert($values);
+            $mails = $this->database->query("SELECT * FROM uzivatele");
+            foreach ($mails as $m) {
+                $mail = new Message();
+                $email = $m->Email;
+                $mail->setFrom("sdhblato@gmail.com")
+                        ->addTo($email)
+                        ->setSubject("Právě byl přidán nový příspěvek")
+                        ->setBody("Na stránku hanzlma.mp.spse-net.cz byl právě přidán nový příspěvek!");
+                $mailer = new SendmailMailer;
+                $mailer->send($mail);
+            }
             $this->flashMessage("Příspěvek byl úspěšně publikován!", 'success');
         }
         $this->redirect("Administration:clanky");

@@ -135,6 +135,11 @@ final class UzivatelPresenter extends Nette\Application\UI\Presenter
     public function actionVymaz($id) :void {
         $userID = $this->user->getId();
         $delete = $this->database->query("UPDATE prispevky SET prispevky.uzivatele_ID = '$userID' WHERE Uzivatele_ID = '$id'; UPDATE akce SET akce.Uzivatele_ID = '$userID' WHERE Uzivatele_ID = '$id'; UPDATE fotogalerie SET fotogalerie.Uzivatele_ID = '$userID' WHERE Uzivatele_ID = '$id'; DELETE FROM uzivatele WHERE uzivateleID = '$id'");
+        if(!$delete) {
+            $this->flashMessage("Uživatele se nepodařilo vymazat!", "error");
+        } else {
+            $this->flashMessage("Uživatel byl úspěšně vymazán!", 'success');
+        }
         $this->redirect("Administration:uzivatele");
     }
 }

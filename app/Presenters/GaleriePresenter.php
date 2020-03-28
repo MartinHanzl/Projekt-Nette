@@ -39,8 +39,8 @@ final class GaleriePresenter extends Nette\Application\UI\Presenter {
         $lastID = $row->Fotogalerie_ID;
         foreach ($values->obrazky as $obrazek) {
             if($obrazek->isImage() && $obrazek->isOk()) {
-                $file_ext = strtolower(mb_substr($obrazek->getSanitizedName(), strrpos($obrazek->getSanitizedName(), ".")));
-                $filename = uniqid(rand(0,20), TRUE).$file_ext;
+                $file_ext = substr(strrchr($obrazek->name,'.'),1);
+                $filename = uniqid(rand(0, 20), TRUE) .".". $file_ext;
                 $obrazek->move("./Galerie/" . $filename);
                 $this->database->table("fotografie")->insert(
                   [

@@ -88,13 +88,14 @@ nav a:hover {
 }
 
 .table {
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     overflow-x: scroll;
 }
 
 table {
-    width: 250%;
+    width: 150%;
     border-spacing: 0px;
     padding: 1%;
     margin-top: 2%;
@@ -109,6 +110,7 @@ th {
 td {
     text-align: center;
     padding: 2%;
+    max-width: 100%;
 }
 
 .last-td {
@@ -123,7 +125,7 @@ td {
 
 form {
     width: 100%;
-    padding: 2%;
+    padding: 1%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -132,9 +134,8 @@ form {
 
 input, select {
     text-align: center;
-    width: 50%;
-    padding: 2%;
-    margin-bottom: 5%;
+    width: 25%;
+    padding: 1%;
     border: none;
     border-bottom: 1px solid #1b263b;
 }
@@ -147,6 +148,14 @@ button {
     margin-top: 5%;
 }
 
+.button {
+    background-color: #2f394c;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 1%;
+    width: 30%;
+}
 
 @media (min-width: 992px) {
     .table {
@@ -164,7 +173,7 @@ button {
     }
 
     input, select {
-        width: 50%;
+        width: 25%;
         padding: 1%;
         margin-bottom: 2%;
     }
@@ -296,11 +305,6 @@ button {
     color: white;
 }
 
-.note-editor.note-frame {
-    width: 100%;
-    max-width: 100%;
-}
-
 .error {
     flex-direction: column;
     padding: 3%;
@@ -341,4 +345,24 @@ button {
 .alert-error {
     background-color: darkred;
     color: white;
+}
+
+.note-editable, .note-toolbar {
+    text-align: left;
+}
+
+.user-table {
+    width: 100%;
+}
+
+.note-editor, .note-frame {
+    width: 60%;
+    margin-left: 20%;
+}
+
+@media (min-width: 768px) {
+    .note-editor, .note-frame {
+        width: 100%;
+        margin-left: 0;
+    }
 }

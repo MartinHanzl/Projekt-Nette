@@ -5,6 +5,7 @@
         </div>
         <div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type"><h3>{$flash->message}</h3></div>
         <a n:href="Galerie:add" class="a-add add"><i class="fas fa-plus"></i><span>Vytvořit fotogalerii</span></a>
+    <div class="table">
         <table>
             <tr>
                 <th>#</th>
@@ -31,5 +32,6 @@
                 </tr>
             {/foreach}
         </table>
+    </div>
     </div>
 {/block}
