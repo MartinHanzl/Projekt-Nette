@@ -92,23 +92,18 @@ nav img {
 }
 
 .slides-info {
-    padding: 2%;
     background-color: rgba(107, 5, 4, 0.9);
     color: white;
     position: absolute;
     bottom: 0;
-    text-align: justify;
     width: 100%;
     text-align: center;
 }
 
-.slides-info p{
-    width: 95%
+.slides-info p {
+    padding: 2%;
 }
 
-.slides-info h2 {
-    text-align: center;
-}
 
 @media (min-width: 568px) {
 
@@ -119,13 +114,12 @@ nav img {
 }
 
 @media (min-width: 992px) {
-
+    .slides-info p {
+        padding: 1%;
+    }
 }
 
 @media (min-width: 1200px) {
-    .slides-info {
-        padding: 1.5%;
-    }
 }
 
 .home-h1 {

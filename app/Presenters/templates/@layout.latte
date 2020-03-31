@@ -6,8 +6,9 @@
 	<script src="https://kit.fontawesome.com/5c13d17743.js"></script>
 	<link rel="stylesheet" href="{$basePath}/Styly/basic.css">
 	<link rel="stylesheet" href="{$basePath}/Styly/lightbox.css">
+	<link rel="shortcut icon" href="{$basePath}/Fotografie/Znaky/Maly%20znak.svg-edit.svg" type="image/x-icon">
 	<script src="{$basePath}/Javascript/lightbox-plus-jquery.js"></script>
-	<title>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</title>
+	<title>SDH Blato</title>
 </head>
 <body>
 	<nav>
@@ -28,27 +29,21 @@
 		<div class="mySlides" style="background-image: url({$basePath}/Fotografie/prilohy_24301/DSC05626.JPG)">
 			<div class="slides-info">
 				<h2>Příprava na sezónu</h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam iure quis quibusdam, voluptatibus rerum suscipit delectus voluptatum deserunt distinctio ipsa dolor! Id sapiente iusto cumque, ab laudantium nihil libero deserunt!</p>
+				<p>První letošní zkušební závod v podání dorostenců. Fotografie pořízena těsně před vítězným útokem!</p>
 			</div>
 		</div>
-
-		<div class="mySlides" style="background-image: url({$basePath}/Fotografie/prilohy_24301/DSC03604.JPG)">
-			<div class="slides-info">
-				<h2>Rok 2019 v kostce</h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam iure quis quibusdam, voluptatibus rerum suscipit delectus voluptatum deserunt distinctio ipsa dolor! Id sapiente iusto cumque, ab laudantium nihil libero deserunt!</p>
-			</div>
-		</div>
-
 		<div class="mySlides" style="background-image: url({$basePath}/Fotografie/prilohy_24301/DSC05364.JPG)">
 			<div class="slides-info">
-				<h2>Otevírání studánek</h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam iure quis quibusdam, voluptatibus rerum suscipit delectus voluptatum deserunt distinctio ipsa dolor! Id sapiente iusto cumque, ab laudantium nihil libero deserunt!</p>
+				<h2>Memorial Jana Dotzauera</h2>
+				<p>První ročník závodu <b>Memorial Jana Dotzauera</b> se konal v Blatě dne 14. června 2019. <br>
+					Naši muži obsadili krásné 2. místo.
+				</p>
 			</div>
 		</div>
 	</div>
 	{include content}
 	<footer>
-		<a href="administrationArticles.php">Administrace stránky</a>
+		<a n:href="Administration:clanky">Administrace stránky</a>
 		<img src="{$basePath}/Fotografie/Znaky/Maly%20znak.svg-edit.svg">
 		<br>
 		<a href="#">Vytvořil <b>Martin Hanzl</b></a>
