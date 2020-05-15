@@ -64,6 +64,8 @@ final class UzivatelPresenter extends Nette\Application\UI\Presenter
         $form->addPassword("heslo2")
             ->setRequired("Zadejte heslo znovu")
             ->setHtmlAttribute("placeholder", "Heslo znovu");
+        $form->addCheckbox("odber", "Přeji si, aby mi byla na výše uvedený email zasílána oznámení o nově přidaných článcích!")
+                ->setDefaultValue(false);
         $form->addSubmit("btnRegister", "Zaregistrovat se");
         $form->onSuccess[] = [$this, 'registrationFormSucceeded'];
         return $form;
@@ -82,6 +84,7 @@ final class UzivatelPresenter extends Nette\Application\UI\Presenter
                         "Email"=>$values->email,
                         "Telefon"=>$values->telefon,
                         "Heslo"=>$heslo1,
+                        "Odber"=> $values->odber,
                         "Role_ID"=>1
                     ]
                 );
@@ -140,6 +143,18 @@ final class UzivatelPresenter extends Nette\Application\UI\Presenter
         } else {
             $this->flashMessage("Uživatel byl úspěšně vymazán!", 'success');
         }
+        $this->redirect("Administration:uzivatele");
+    }
+
+    public function actionPrestat($id) :void {
+        $userID = $this->user->getId();
+        $update = $this->database->query("UPDATE uzivatele SET Odber = '0' WHERE uzivateleID = $userID");
+        $this->redirect("Administration:uzivatele");
+    }
+
+    public function actionZacit($id) :void {
+        $userID = $this->user->getId();
+        $update = $this->database->query("UPDATE uzivatele SET Odber = '1' WHERE uzivateleID = $userID");
         $this->redirect("Administration:uzivatele");
     }
 }

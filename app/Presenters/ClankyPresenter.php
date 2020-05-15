@@ -67,7 +67,7 @@ final class ClankyPresenter extends Nette\Application\UI\Presenter
             $this->flashMessage("Příspěvek byl úspěšně upraven!", 'success');
         } else {
             $prispevek = $this->database->table("prispevky")->insert($values);
-            $mails = $this->database->query("SELECT * FROM uzivatele");
+            $mails = $this->database->query("SELECT * FROM uzivatele where Odber = 1");
             foreach ($mails as $m) {
                 $mail = new Message();
                 $email = $m->Email;

@@ -366,3 +366,27 @@ button {
         margin-left: 0;
     }
 }
+
+.odber {
+    display: flex;
+    justify-content: space-around;
+}
+
+.odber a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+@media (min-width: 992px) {
+    .odber {
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .odber a {
+        width: 15%;
+        padding: 1%;
+        border: 1px solid black;
+    }
+}

@@ -31,6 +31,14 @@
                 <td>Úroveň oprávnění:</td>
                 <td>{$u->Nazev}</td>
             </tr>
+            <tr>
+                <td>Odběr novinek</td>
+                {if $u->Odber == 0}
+                    <td>Ne</td>
+                {else}
+                    <td>Ano</td>
+                {/if}
+            </tr>
         </table>
         </div>
     {/foreach}
